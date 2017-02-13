@@ -1,13 +1,22 @@
 import { connect } from 'react-redux';
 import Stations from '../components/Stations'
 
-const mapStateToProps = (state) => console.log("THIS OBJECT HERE", state)
-// ({
-//     // stations:
-// })
+const stationMaker = (songsArray) => {
+  const songsObject = {};
 
-//state.songs is an array
-//map over the array and organize by genre
+  songsArray.forEach((song) => {
+    if (!songsObject[song.genre]) {
+      songsObject[song.genre] = [];
+    }
+    songsObject[song.genre].push(song);
+  });
+
+  return songsObject;
+};
+
+const mapStateToProps = (state) => ({
+    stations: stationMaker(state.songs)
+});
 
 const mapDispatchToProps = (dispatch) => ({})
 

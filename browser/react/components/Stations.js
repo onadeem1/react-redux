@@ -7,16 +7,18 @@ const DUMMY_STATIONS_DATA = [
   { name: 'Classical' }
 ];
 
-export default () => {
+export default (props) => {
+  const stationKeys = Object.keys(props.stations);
+
   return (
     <div>
       <h3>Stations</h3>
       <div className="list-group">
       {
-        DUMMY_STATIONS_DATA.map(station => {
+        stationKeys.map(station => {
           return (
-            <div className="list-group-item" key={station.name}>
-              <Link to={'fill/me/in/later'}>{station.name}</Link>
+            <div className="list-group-item" key={station}>
+              <Link to={`/stations/${station}`}>{station}</Link>
             </div>
           );
         })
